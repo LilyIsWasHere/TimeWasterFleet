@@ -6,8 +6,7 @@ def main(tweet_id):
     tweet = get_tweet(tweet_id, api)
     longest_word = get_longest_word(tweet)
     new_tweet = get_new_tweet(longest_word)
-    print(new_tweet)
-    api.update_status(new_tweet, in_reply_to_status_id=tweet_id)
+    api.update_status(new_tweet, in_reply_to_status_id=tweet.id, auto_populate_reply_metadata=True)
 
 
 def get_authorization():
@@ -49,16 +48,14 @@ def get_longest_word(tweet):
 
 
 def get_new_tweet(longest_word):
-    cope_tweets = [
+    template_tweets = [
         f'I don\'t think "{longest_word}" means what you think it means. Maybe you should put down your phone and pick '
         f'up a dictionary.',
         f'Using big words like "{longest_word}" incorrectly on the internet doesn\'t make you look smart. Try '
         f'developing your mind instead of your social media presence. Just a thought.'
     ]
-    new_tweet = random.choice(cope_tweets)
+    new_tweet = random.choice(template_tweets)
     return new_tweet
 
 
 main()
-
-Message .hack//sign weeb chat (feifantasy foursome)
